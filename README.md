@@ -4,7 +4,7 @@
 All over the world, people have started 2,000,000+ incredible sites with Ghost.
 You can try the hosted version at https://ghost.org or run it on your own and read on a few simple steps.
 
-**Ghosty is a one command deploy for your home based Ghost blog project that will produce a sharable web URL for people to read your blog or even own their own blog. You will not pay for any hosting fees if you don't want to, because your computer is the host. And now you do not need any fixed IP address, know what it is, or any geeky knowledge to make it happen, thanks to Ghosty. **
+Ghosty is a one command deploy for your home based Ghost blog project that will produce a sharable web URL for people to read your blog or even own their own blog. You will not pay for any hosting fees if you don't want to, because your computer is the host. And now you do not need any fixed IP address, know what it is, or any geeky knowledge to make it happen, thanks to Ghosty.
 
 
 I have been exploring with a bunch of  install file for Ghost and haven't found any that was both quick to deploy and flexible enough for development as well as production.
