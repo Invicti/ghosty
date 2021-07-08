@@ -49,7 +49,7 @@ Instructions to try out your new site will appear on the screen (the URL will be
 Ghosty's mission complete, Ghost is listening on https://2733bef2191a.ngrok.io. Control C to exit.
 ```
 
-> This address will change next time you run `docker run...` so if you want to keep the same address you can pay a small monthly fee to ngrok and they will provide you with a fixed URL and will even terminate your connection with ssl certificates so you don't have to do deal with it.
+> This address will change next time you run `docker run...` so if you want to keep the same address you can pay a small monthly fee to ngrok and they will provide you with a fixed URL and will even terminate your connection with ssl certificates so you don't have to deal with it.
 
 > You can monitor traffic to your site by pointing your browser to your localhost on port 4040  https://localhost:4040
 
