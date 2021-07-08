@@ -35,7 +35,10 @@ Instructions to try out your new site will appear on the screen (the URL will be
 ```bash
 Ghosty's mission complete, Ghost is listening on https://2733bef2191a.ngrok.io. Control C to exit.
 ```
-
+If you know what you are doing you can send the host name to Ghost so the links are not broken in case you host it behind a proxy (and you know its assigned host name before running the container). Make sure you turn off NGROK with NGROK=0:
+```bash
+docker run -e "NGROK=0" -e "GHOST_HOSTNAME=yourhostname.com" -ti  -p 2368:2368 -p 5555:5555 invicti/ghosty:main sh
+```
 Note: The docker file is generated automatically by Github based on the latest main branch of this repository. So this is the way to go if all you care about is running a Ghost server and publish it to the world immediately.
 If you are more interested in using Ghosty as an entry point to the latest development version of Ghost it would be more interesting to follow the next step to run Ghosty, it is greatly simplified.
 

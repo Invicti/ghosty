@@ -3,6 +3,8 @@ EXPOSE 2368:2368/tcp
 EXPOSE 5555:5555/tcp
 EXPOSE 9229:9229/tcp
 EXPOSE 4040:4040/tcp
+ARG ENV_NGROK
+ENV NGROK=$ENV_NGROK
 RUN  apt-get -y update
 RUN  apt-get -y install software-properties-common
 #RUN  add-apt-repository ppa:certbot/certbot
