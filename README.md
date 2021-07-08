@@ -53,7 +53,7 @@ Ghosty's mission complete, Ghost is listening on https://2733bef2191a.ngrok.io. 
 
 > You can monitor traffic to your site by pointing your browser to your localhost on port 4040  https://localhost:4040
 
-![Image of Ghost Site](ngrokStatus.pdf)
+![Image of Ghost Site](https://github.com/Invicti/ghosty/ngrokStatus.png)
 
 ## Advanced use
 The `docker build` command will pull the latest version of Ghost source code from a cloned repository that keeps the Ghost repository as its upstream. So the source code for Ghost is available to you in the running Docker. To access it you simply run `docker exec -ti [containerID] sh` from another terminal window after your run the previous steps from a first terminal window (This way you don't have to stop the running Ghost server). More information for advanced users is available here https://github.com/Invicti/Ghost.
