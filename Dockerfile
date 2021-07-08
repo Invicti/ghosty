@@ -2,6 +2,7 @@ FROM ubuntu
 EXPOSE 2368:2368/tcp
 EXPOSE 5555:5555/tcp
 EXPOSE 9229:9229/tcp
+EXPOSE 4040:4040/tcp
 RUN  apt-get -y update
 RUN  apt-get -y install software-properties-common
 #RUN  add-apt-repository ppa:certbot/certbot
@@ -39,6 +40,7 @@ RUN git checkout main
 RUN git pull upstream main
 RUN yarn setup
 COPY start.sh . 
+COPY ngrok.conf .
 RUN chmod +x start.sh
 ENTRYPOINT ["./start.sh"]
 CMD ["true", "batman", "superman"]
