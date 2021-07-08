@@ -9,7 +9,7 @@ Ghosty is a one command deploy for your home based Ghost blog project that will 
 
 
 I have been exploring with a bunch of  install file for Ghost and haven't found any that was both quick to deploy and flexible enough for development as well as production.
-Docker must be installed and running on your machine.
+
 
 ## Quick start
 
