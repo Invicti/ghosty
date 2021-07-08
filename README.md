@@ -5,7 +5,7 @@ All over the world, people have started 2,000,000+ incredible sites with [Ghost]
 
 You can try the hosted version free at [Ghost](https://ghost.org) or pay for it to open options.
 
-Or try Ghosty for free:
+Or try Ghosty to run Ghost for free on your own computer with a home internet connection, and even let your friends and family try it out for free.
 
 Ghosty is "Instant deployment for free expression" in the comfort of your own or office. 
 
