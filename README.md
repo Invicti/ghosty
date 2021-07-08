@@ -13,7 +13,26 @@ Docker must be installed and running on your machine.
 
 ## Quick start
 
-From the Ghost directory, at the shell prompt, run `./startup.sh`.
+### Pull and run the container
+
+Make sure docker is installed and type the following in your terminal:
+
+```bash
+docker pull ghcr.io/invicti/ghosty:main
+docker run -ti  -p 2368:2368 -p 5555:5555 invicti/ghosty:main sh
+```
+Instructions to try out your new site will appear on the screen (the URL will be different):
+```bash
+Ghosty's mission complete, Ghost is listening on https://2733bef2191a.ngrok.io. Control C to exit.
+```
+
+Note: The docker file is generated automatically by Github based on the latest main branch of this repository. So this is the way to go if all you care about is running a Ghost server and publish it to the world immediately.
+If you are more interested in using Ghosty as an entry point to the latest development version of Ghost it would be more interesting to follow the next step to run Ghosty, it is greatly simplified.
+
+
+### From source after you clone this project.
+
+First clone this project, and from the Ghost directory, at the shell prompt, run `./startup.sh`.
 
 Instructions to try out your new site will appear on the screen (the URL will be different):
 ```bash
