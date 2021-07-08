@@ -16,6 +16,8 @@ Now say you want to show your friends, all you have to do is run ngrok, get it a
 Once ngrok is installed, to get a public URL to your site just run the following command.
 `ngrok http 2368`
 
+Developer corner: The `docker build` command will pull the latest version of Ghost source code from a cloned repository that keeps the Ghost repository as its upstream. So the source code for Ghost is available to you in the running Docker. To access it you simply run `docker exec -ti [containerID] sh` from another terminal window after your run the previous steps from a first terminal window (This way you don't have to stop the running Ghost server). More information for advanced users is available here https://github.com/Invicti/Ghost.
+
 That's it for now!
 
 Enjoy Ghost!
