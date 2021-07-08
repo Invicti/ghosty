@@ -3,9 +3,11 @@
 
 All over the world, people have started 2,000,000+ incredible sites with [Ghost](https://ghost.org).
 
-You can try the hosted version free at [Ghost](https://ghost.org).
+You can try the hosted version free at [Ghost](https://ghost.org) or pay for it to open options.
 
-Ghosty is "Instant indepedant deployement of professional free expression". 
+Or try Ghosty:
+
+Ghosty is "Instant independant deployement of professional free expression". 
 
 Ghostly will produce a sharable web URL for people to read your blog or even own their own blog. 
 
@@ -27,7 +29,7 @@ Make sure docker is installed and type the following in your terminal:
 
 ```bash
 docker pull ghcr.io/invicti/ghosty:main
-docker run -ti  -p 2368:2368 -p 5555:5555 invicti/ghosty:main sh
+docker run -ti  -p 2368:2368 -p 5555:5555 -p 4040:4040 invicti/ghosty:main sh
 ```
 Instructions to try out your new site will appear on the screen (the URL will be different):
 ```bash
@@ -48,6 +50,10 @@ Ghosty's mission complete, Ghost is listening on https://2733bef2191a.ngrok.io. 
 ```
 
 > This address will change next time you run `docker run...` so if you want to keep the same address you can pay a small monthly fee to ngrok and they will provide you with a fixed URL and will even terminate your connection with ssl certificates so you don't have to do deal with it.
+
+> You can monitor traffic to your site by pointing your browser to your localhost on port 4040  https://localhost:4040
+
+![Image of Ghost Site](ngrokStatus.pdf)
 
 ## Advanced use
 The `docker build` command will pull the latest version of Ghost source code from a cloned repository that keeps the Ghost repository as its upstream. So the source code for Ghost is available to you in the running Docker. To access it you simply run `docker exec -ti [containerID] sh` from another terminal window after your run the previous steps from a first terminal window (This way you don't have to stop the running Ghost server). More information for advanced users is available here https://github.com/Invicti/Ghost.
