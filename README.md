@@ -1,5 +1,5 @@
 # ghosty
-Ghosty lets you deploy your blog of your own, based on the famous Ghost blog project.
+Ghosty, based on the famous Ghost blog project, lets you host your blog on your own computer at home or hosted anywhere under your control.
 All over the world, people have started 2,000,000+ incredible sites with Ghost.
 You can try the hosted version at https://ghost.org or run it on your own and read on a few simple steps.
 I have been exploring with a bunch of Docker install file for Ghost and haven't found any that was both quick to deploy and flexible enough for development as well as production.
