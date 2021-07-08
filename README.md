@@ -28,8 +28,8 @@ I have been exploring with a bunch of  install file for Ghost and haven't found 
 Make sure docker is installed and type the following in your terminal:
 
 ```bash
-docker pull docker.io/invictieu/ghosty:0.1.0
-docker run -ti  -p 2368:2368 -p 5555:5555 -p 4040:4040 invicti/ghosty sh
+docker pull docker.io/invictieu/ghosty
+docker run -ti  -p 2368:2368 -p 5555:5555 -p 4040:4040 invictieu/ghosty sh
 ```
 Instructions to try out your new site will appear on the screen (the URL will be different):
 ```bash
@@ -37,7 +37,7 @@ Ghosty's mission complete, Ghost is listening on https://2733bef2191a.ngrok.io. 
 ```
 If you know what you are doing you can send the host name to Ghost so the links are not broken in case you host it behind a proxy (and you know its assigned host name before running the container). Make sure you turn off NGROK with NGROK=0:
 ```bash
-docker run -e "NGROK=0" -e "GHOST_HOSTNAME=yourhostname.com" -ti  -p 2368:2368 -p 5555:5555 invicti/ghosty sh
+docker run -e "NGROK=0" -e "GHOST_HOSTNAME=yourhostname.com" -ti  -p 2368:2368 -p 5555:5555 invictieu/ghosty sh
 ```
 Note: The docker file is generated automatically by Github based on the latest main branch of this repository. So this is the way to go if all you care about is running a Ghost server and publish it to the world immediately.
 If you are more interested in using Ghosty as an entry point to the latest development version of Ghost it would be more interesting to follow the next step to run Ghosty, it is greatly simplified.
@@ -62,7 +62,7 @@ Ghosty's mission complete, Ghost is listening on https://2733bef2191a.ngrok.io. 
 The `docker build` command will pull the latest version of Ghost source code from a cloned repository that keeps the Ghost repository as its upstream. So the source code for Ghost is available to you in the running Docker. To access it you simply run `docker exec -ti [containerID] sh` from another terminal window after your run the previous steps from a first terminal window (This way you don't have to stop the running Ghost server). More information for advanced users is available here https://github.com/Invicti/Ghost.
 If you want to disable ngrok simply edit the start.sh file and comment out the line starting by ngrok (Prefix the line with #).
 
-You can execute the following steps manually, as it is now handled by the startup.sh script that you do not have to run. First build the docker file with `docker build . -t invicti/ghosty` and then run it `docker run -ti  -p 2368:2368 -p 5555:5555 invicti/ghosty`.
+You can execute the following steps manually, as it is now handled by the startup.sh script that you do not have to run. First build the docker file with `docker build . -t invictieu/ghosty` and then run it `docker run -ti  -p 2368:2368 -p 5555:5555 invictieu/ghosty`.
 
 
 That's it for now!
