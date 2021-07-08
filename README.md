@@ -7,7 +7,7 @@ You can try the hosted version free at [Ghost](https://ghost.org) or pay for it 
 
 Or try Ghosty:
 
-Ghosty is "Instant independant deployement of professional free expression". 
+Ghosty is "Instant deployment for free expression" in the comfort of your own or office. 
 
 Ghostly will produce a sharable web URL for people to read your blog or even own their own blog. 
 
