@@ -31,7 +31,9 @@ RUN git pull
 WORKDIR "/Ghost"
 RUN git remote rename origin upstream
 RUN git remote add origin https://github.com/Invicti/Admin.git
-RUN git checkout main
+RUN git checkout main 
 RUN git pull upstream main
 RUN yarn setup
-RUN yarn start
+ENTRYPOINT yarn start
+#RUN yarn start
+#RUN yarn dev
