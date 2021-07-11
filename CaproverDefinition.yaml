@@ -1,0 +1,106 @@
+captainVersion: 4
+services:
+    #Ghosty
+    $$cap_appname:
+        image: invictieu/ghosty:$$cap_ghosty_version
+        volumes:
+            - $$cap_appname-data:/data
+        restart: always
+        environment:
+            NGROK: 0
+            GHOST_HOSTNAME: $$cap_ghosty_hostname
+            GHOST_MAIL__FROM: $$cap_ghost_mail__from
+            GHOST_MAIL__TRANSPORT: $$cap_ghost_mail__transport
+            GHOST_MAIL__OPTIONS__SERVICE: $$cap_ghost_mail__options__service
+            GHOST_MAIL__OPTIONS__PORT: $$cap_ghost_mail__options__port
+            GHOST_MAIL__OPTIONS__HOST: $$cap_ghost_mail__options__host
+            GHOST_MAIL__OPTIONS__SECURE_CONNECTION: $$cap_ghost_mail__options__secure_connection
+            GHOST_MAIL__OPTIONS__AUTH__USER: $$cap_ghost_mail__options__auth__user
+            GHOST_MAIL__OPTIONS__SERVICE__AUTH__PASS: $$cap_ghost_mail__auth__pass
+            GHOST_DATABASE_CLIENT: $$cap_ghost_database_client
+            GHOST_DATABASE_CONNECTION__HOST: $$cap_ghost_database_host
+            GHOST_DATABASE_CONNECTION__DATABASE: $$cap_ghost_database_database
+            GHOST_DATABASE_CONNECTION__USER: $$cap_ghost_database_user
+            GHOST_DATABASE_CONNECTION__PASSWORD: $$cap_ghost_database_password
+            GHOST_DATABASE_CONNECTION__FILENAME: $$cap_ghost_database_filename
+        caproverExtra:
+            containerHttpPort: '2368'
+caproverOneClickApp:
+    variables:
+        - id: $$cap_ghosty_version
+          label: Ghosty Version
+          defaultValue: '0.1.1'
+          description: ''
+        - id: $$cap_ghosty_use_ngrok
+          label: Use ngrok
+          defaultValue: 0
+          description: 'Do not se this option on unless you want to also set a ngrok host name which may break the caprover process.'
+        - id: $$cap_ghosty_ghost_hostname
+          label: Ghost hostname
+          defaultValue: 'yourblogname.domain.com'
+          description: 'This is the host as seen from the outside world i.e. yourblog.com'
+        - id: $$cap_ghost_mail__from
+          label: 'Email address to send messages to members from (you can change that later)'
+          defaultValue: ''
+          description: ''
+        - id: $$cap_ghost_mail__transport
+          label: Ghost email transport
+          defaultValue: 'SMTP'
+          description: ''
+        - id: $$cap_ghost_mail__options__service
+          label: Ghost email service
+          defaultValue: 'SMTP'
+          description: ''
+        - id: $$cap_ghost_mail__options__port
+          label: Ghost mail port number
+          defaultValue: '2525'
+          description: ''
+        - id: $$cap_ghost_mail__options__host
+          label: Ghost mail host name
+          defaultValue: 'smtp.mailtrap.io'
+          description:  ''  
+        - id: $$cap_ghost_mail__options__secure_connection
+          label: Ghost mail is using ssl (true/false)
+          defaultValue: 'true'
+          description: ''
+        - id: $$cap_ghost_mail__options__auth__user
+          label: Ghost mail server user login
+          defaultValue: 'e9ce845b5a0d8c'
+          description:    ''
+        - id: $$cap_ghost_mail__auth__pass
+          label: Ghost mail server user password
+          defaultValue: '1fd040592ff7c8'
+          description: ''
+        - id: $$cap_ghost_database_host
+          label: 'Ghost database host.' 
+          defaultValue: ''
+          description: 'Leave empty if using sqlite3.'   
+        - id: $$cap_ghost_database_database
+          label: 'Ghost database name.' 
+          defaultValue: 'ghost'
+          description: 'Leave empty if using sqlite3.'     
+        - id: $$cap_ghost_database_user
+          label: Ghost database login
+          defaultValue: ''
+          description:  'Leave empty if using sqlite3'
+        - id: $$cap_ghost_database_password
+          label: Ghost database password
+          defaultValue: ''
+          description: 'Leave empty if using sqlite3 or if using a database with no password.'
+        - id: $$cap_ghost_database_client
+          label: 'Ghost database client'
+          defaultValue: 'sqlite3'
+          description:   
+        - id: $$cap_ghost_database_filename
+          label: 'Ghost hostname'
+          defaultValue: '/data/ghost-test.db'
+          description: 'Leave empty if using sqlite3'
+    displayName: 'Ghosty'
+    isOfficial: true
+    description: N/A
+    documentation: N/A
+    instructions:
+        start: >-
+          Installing Ghosty 
+        end: >-
+          Ghosty available at http://$$cap_appname.$$cap_root_domain
