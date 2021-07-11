@@ -5,9 +5,19 @@ set +x #set to -x to trace this script on the console.
 bold=$(tput bold)
 normal=$(tput sgr0)
 
-export port_def=""
 
-[[ $GHOST_HOSTNAME=="localhost" ]] && GHOST_HOSTNAME="localhost"; port_def=":2368" || GHOST_HOSTNAME=$GHOST_HOSTNAME; ; port_def=""
+echo "Host name is: ${GHOST_HOSTNAME}"
+
+if [[ "$GHOST_HOSTNAME" == "localhost" ]] 
+then
+    GHOST_HOSTNAME="localhost"
+    port_def=":2368"
+else
+    port_def=""
+fi 
+echo "Host name refactored to: ${GHOST_HOSTNAME}"
+echo "Port definition refactored to: ${port_def}"
+
 ghost_env_group_log="logging_path=ghost.log logging_level=debug "
 GHOST_DEFAULT_PORT=2368
 

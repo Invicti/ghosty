@@ -3,6 +3,8 @@ services:
     #Ghosty
     $$cap_appname:
         image: invictieu/ghosty:$$cap_ghosty_version
+        volumes:
+            - $$cap_appname-data:/data
         restart: always
         environment:
             NGROK: 0
@@ -91,7 +93,7 @@ caproverOneClickApp:
           description:   
         - id: $$cap_ghost_database_filename
           label: 'Ghost hostname'
-          defaultValue:
+          defaultValue: '/data/ghost-test.db'
           description: 'Leave empty if using sqlite3'
     displayName: 'Ghosty'
     isOfficial: true
