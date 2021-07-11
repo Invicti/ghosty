@@ -9,7 +9,7 @@ docker build . -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest
 docker rm -f ghosty
 docker run \
 -e "NGROK=1" \
--e "GHOST_HOSTNAME=localhost" \
+-e "GHOST_HOSTNAME=" \
 -e "GHOST_MAIL__TRANSPORT=SMTP" \
 -e "GHOST_MAIL__OPTIONS__SERVICE=" \
 -e "GHOST_MAIL__OPTIONS__PORT=2525" \
