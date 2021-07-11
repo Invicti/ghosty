@@ -1,20 +1,15 @@
 #!/bin/bash
 #This script will build the docker file and run Ghostly immediately after.
-#!/bin/bash
-#This script will build the docker file and run Ghostly immediately after.
+#Mysql not activated here yet so please leave the sqlite3 option untouched for now and
+#wait a few days if you need mysql support.
 PUSH_REPOSITORY=docker.io
 IMAGE=invictieu/ghosty
-<<<<<<< Updated upstream
-VERSION=0.1.0
-docker build . -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest
-docker run -e "NGROK=1" -e "GHOST_HOSTNAME=" -ti  -p 2368:2368 -p 5555:5555 ${PUSH_REPOSITORY}/${IMAGE}:${VERSION} sh
-=======
 VERSION=0.1.5
 docker build . -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest
 docker rm -f ghosty
 docker run \
 -e "NGROK=1" \
--e "GHOST_HOSTNAME=" \
+-e "GHOST_HOSTNAME=localhost" \
 -e "GHOST_MAIL__TRANSPORT=SMTP" \
 -e "GHOST_MAIL__OPTIONS__SERVICE=" \
 -e "GHOST_MAIL__OPTIONS__PORT=2525" \
@@ -35,4 +30,3 @@ docker run \
 --name ghosty \
 ${PUSH_REPOSITORY}/${IMAGE}:${VERSION} \
 #sh
->>>>>>> Stashed changes

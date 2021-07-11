@@ -1,13 +1,10 @@
 #!/bin/bash
 set +x #set to -x to trace this script on the console.
-<<<<<<< Updated upstream
-=======
 
 #this is where we check for input variables sent to the Ghost instance.
 bold=$(tput bold)
 normal=$(tput sgr0)
-echo "Host name set to: ${GHOST_HOSTNAME}"
-export port_def=""
+
 
 echo "Host name is: ${GHOST_HOSTNAME}"
 
@@ -80,36 +77,52 @@ cat ./config.development.json
 
 
 printenv
->>>>>>> Stashed changes
     echo "Ghosty just got in."
+    echo "Environment variables are set as follow: $ghost_env_group_email"
 
     echo "Press [CTRL+C] to stop autostart..."
+
+    
     
     if [ $NGROK == 1 ]
+
     then
-        echo "NGROK autostart is on."
-        echo "Now setting up an ephemaral public url to share."
-        set +e #keep running even if ngrok not available
-        ngrok http 2368 -config=./ngrok.conf > /dev/null &
-        sleep 1 
-        NGROK_HOSTNAME=$(curl --silent --show-error http://0.0.0.0:4040/api/tunnels | sed -nE 's/.*public_url":"https:..([^"]*).*/\1/p')
-        echo "${bold}Ghosty is now starting Ghost on https://$NGROK_HOSTNAME"
-        set -e #Quit if yarn issues.
-        url="https://${NGROK_HOSTNAME}" nohup yarn start > ghosty.log > /dev/null &
-    else
+            echo "NGROK autostart is on."
+            echo "Now setting up an ephemaral public url to share."
+            set +e #keep running even if ngrok not available
+            ngrok http 2368 -config=./ngrok.conf > /dev/null &
+            sleep 1 
+            NGROK_HOSTNAME=$(curl --silent --show-error http://0.0.0.0:4040/api/tunnels | sed -nE 's/.*public_url":"https:..([^"]*).*/\1/p')
+            echo "${bold}Ghosty is now starting Ghost on https://$NGROK_HOSTNAME"
+            set -e #Quit if yarn issues.
 
-        if [ -z "$GHOST_HOSTNAME" ] 
-        then
-           nohup yarn start > ghosty.log > /dev/null &
-           echo "${bold}Ghosty's mission complete, Ghost is listening on http://localhost:2368. Control C to exit."
-        else
-           url="http://${GHOST_HOSTNAME}"  nohup yarn start > ghosty.log > /dev/null &
-           sleep 1 
-           echo "${bold}Ghosty's mission complete, Ghost is listening on http://${GHOST_HOSTNAME}:2368. Control C to exit."
-        fi
+            #Ghost startup.
+            export url="https://${NGROK_HOSTNAME}" 
+            GHOST_HOSTNAME=${NGROK_HOSTNAME}
+            port_def=""
+            #nohup yarn start > ghosty.log &#> /dev/null &
+     fi
 
+            # add in launchmd if needed.
+            # DEBUG=ghost-config \
+            # NODE_ENV=development \
+            # ${ghost_env_group_database} \
 
-    fi
+            launchcmd=" \
+            url=http://${GHOST_HOSTNAME}${port_def} \
+            nohup yarn start > ghosty.log & \
+            #> /dev/null &"
+            eval $launchcmd
+            sleep 1 
+       if [ $NGROK == 0 ]
+       then
+           echo "${bold}Ghosty's mission complete, Ghost is listening on https://${GHOST_HOSTNAME} . Control C to exit."
+
+       else
+            echo "${bold}Ghosty's mission complete, Ghost is listening on http://${GHOST_HOSTNAME}${port_def} . Control C to exit."
+       fi
+    
 
     trap 'trap - INT; kill "$!"; exit' INT
-    exec tail -f /dev/null & wait $!
+    #exec tail -f /dev/null & wait $!
+    exec tail -f ./ghosty.log #& wait $!
