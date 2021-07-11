@@ -4,7 +4,7 @@
 #wait a few days if you need mysql support.
 PUSH_REPOSITORY=docker.io
 IMAGE=invictieu/ghosty
-VERSION=0.1.4
+VERSION=0.1.5
 docker build . -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest
 docker rm -f ghosty
 docker run \
