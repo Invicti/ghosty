@@ -6,6 +6,7 @@ CaproverDefinition.yaml
 pb.sh
 ghost_code
 ghost_data
+.idea
 # Logs
 logs
 *.log
