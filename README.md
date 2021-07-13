@@ -23,8 +23,8 @@ I have been exploring with a bunch of  install file for Ghost and haven't found 
 
 ## Quick start
 ### Install Git and Docker
-![For instructions on how to install Git click here](https://gist.github.com/derhuerst/1b15ff4652a867391f03)
-![For instructions on how to Docker click here](https://docs.docker.com/get-docker/)
+https://gist.github.com/derhuerst/1b15ff4652a867391f03
+https://docs.docker.com/get-docker
 
 ### Clone and run the script straight from GitHub by running this one line in your terminal (Install git and Docker first), you will see information scrolling real fast on the screen and then it will stop and provide you the URL you need.
 ```bash
