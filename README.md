@@ -21,9 +21,9 @@ You will not pay for any hosting fees if you don't want to, because your compute
 I have been exploring with a bunch of  install file for Ghost and haven't found any that was both quick to deploy and flexible enough for development as well as production.
 
 
-##Quick start
+## Quick start
 
-###Install Git and Docker
+### Install Git and Docker
 For instructions on how to install Git click [here](https://gist.github.com/derhuerst/1b15ff4652a867391f03)
 
 For instructions on how to install [Docker](http://https://docs.docker.com/get-docker/)
