@@ -23,12 +23,17 @@ I have been exploring with a bunch of  install file for Ghost and haven't found 
 
 ## Quick start
 
+### Clone and run the script straight from GitHub by running this one line in your terminal (Install git and Docker first), you will see information scrolling real fast on the screen and then it will stop and provide you the URL you need.
+```bash
+git clone https://github.com/Invicti/ghosty.git; cd ghosty; ./startup.sh
+```
 ### Pull and run the container
-
+Run the docker container:
 <a href="https://asciinema.org/a/l38Z6W4diHGNfGqpCKrPKT4av" target="_blank"><img src="https://asciinema.org/a/l38Z6W4diHGNfGqpCKrPKT4av.svg" /></a>
 
-Make sure docker is installed first and type the following in your terminal, you can add your own information for the email server or use the default 
-mailtrap to test it out and change later:
+Make sure docker is installed first and type the following in your terminal, you can add your own information for the email server or leave it empty and change later:
+Make sure your set or remove the REPLACE_WITH field with an empty string if you do not know how set your SMTP server. It does not matter as it won't impair Ghost main features for now but only if you enable subscription to your content. (dont remove the line).
+
 ```bash
 docker pull docker.io/invictieu/ghosty
 docker run docker run \
@@ -38,10 +43,10 @@ docker run docker run \
 -e "GHOST_MAIL__TRANSPORT=SMTP" \
 -e "GHOST_MAIL__OPTIONS__SERVICE=" \
 -e "GHOST_MAIL__OPTIONS__PORT=2525" \
--e "GHOST_MAIL__OPTIONS__HOST=smtp.mailtrap.io" \
--e "GHOST_MAIL__OPTIONS__SECURE_CONNECTION=" \
--e "GHOST_MAIL__OPTIONS__AUTH__USER=e9ce845b5a0d8c" \
--e "GHOST_MAIL__OPTIONS__AUTH__PASS=1fd040592ff7c8" \
+-e "GHOST_MAIL__OPTIONS__HOST=REPLACE_WITH_YOUR_SMTP_HOST" \
+-e "GHOST_MAIL__OPTIONS__SECURE_CONNECTION=REPLACE_WITH_YOUR_SMTP_CONNECTION_TYPE" \
+-e "GHOST_MAIL__OPTIONS__AUTH__USER=REPLACE_WITH_YOUR_SMTP_CONNECTION_USER_NAME" \
+-e "GHOST_MAIL__OPTIONS__AUTH__PASS=REPLACE_WITH_YOUR_SMTP_CONNECTION_USER_PASSWORD" \
 -e "GHOST_MAIL__FROM=email@example.com" \
 -e "GHOST_DATABASE_CLIENT=sqlite3" \
 -e "GHOST_DATABASE_CONNECTION__HOST=" \
