@@ -25,11 +25,39 @@ I have been exploring with a bunch of  install file for Ghost and haven't found 
 
 ### Pull and run the container
 
-Make sure docker is installed and type the following in your terminal:
+<a href="https://asciinema.org/a/l38Z6W4diHGNfGqpCKrPKT4av" target="_blank"><img src="https://asciinema.org/a/l38Z6W4diHGNfGqpCKrPKT4av.svg" /></a>
 
+Make sure docker is installed first and type the following in your terminal, you can add your own information for the email server or use the default 
+mailtrap to test it out and change later:
 ```bash
 docker pull docker.io/invictieu/ghosty
-docker run -ti  -p 2368:2368 -p 5555:5555 -p 4040:4040 invictieu/ghosty sh
+docker run docker run \
+-e "NGROK=1" \
+-e "GHOST_URL_PROTO=https://" \
+-e "GHOST_HOSTNAME=" \
+-e "GHOST_MAIL__TRANSPORT=SMTP" \
+-e "GHOST_MAIL__OPTIONS__SERVICE=" \
+-e "GHOST_MAIL__OPTIONS__PORT=2525" \
+-e "GHOST_MAIL__OPTIONS__HOST=smtp.mailtrap.io" \
+-e "GHOST_MAIL__OPTIONS__SECURE_CONNECTION=" \
+-e "GHOST_MAIL__OPTIONS__AUTH__USER=e9ce845b5a0d8c" \
+-e "GHOST_MAIL__OPTIONS__AUTH__PASS=1fd040592ff7c8" \
+-e "GHOST_MAIL__FROM=email@example.com" \
+-e "GHOST_DATABASE_CLIENT=sqlite3" \
+-e "GHOST_DATABASE_CONNECTION__HOST=" \
+-e "GHOST_DATABASE_CONNECTION__USER=" \
+-e "GHOST_DATABASE_CONNECTION__PASSWORD=" \
+-e "GHOST_DATABASE_CONNECTION__FILENAME=/data/ghost-test.db" \
+-e "GHOST_DATABASE_CONNECTION__DATABASE=ghost" \
+-e "GHOST_DB_RESET=0" \
+-ti  \
+-p 2368:2368 \
+-p 4040:4040 \
+--mount src=ghost_data_prod,target=/data,type=volume \
+--mount src=ghost_code2_prod,target=/opt/ghosty,type=volume \
+--name ghosty \
+invictieu/ghosty:latest sh
+
 ```
 Instructions to try out your new site will appear on the screen (the URL will be different):
 ```bash
@@ -39,6 +67,10 @@ If you know what you are doing you can send the host name to Ghost so the links 
 ```bash
 docker run -e "NGROK=0" -e "GHOST_HOSTNAME=yourhostname.com" -ti  -p 2368:2368 -p 5555:5555 invictieu/ghosty sh
 ```
+
+You can see how it works [Here](https://asciinema.org/a/l38Z6W4diHGNfGqpCKrPKT4av)
+
+
 Note: The docker file is generated automatically by Github based on the latest main branch of this repository. So this is the way to go if all you care about is running a Ghost server and publish it to the world immediately.
 If you are more interested in using Ghosty as an entry point to the latest development version of Ghost it would be more interesting to follow the next step to run Ghosty, it is greatly simplified.
 

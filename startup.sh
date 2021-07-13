@@ -12,7 +12,6 @@ VERSION=0.1.7
 
 echo "version $VERSION"
 
-
 docker build .  -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest #add -no-cache if needed.
 # lines below will not work if volumes were created from a previous launch and still linked to a container.
 # docker volume rm -f ghost_data

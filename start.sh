@@ -6,6 +6,11 @@ echo "executing in: "`pwd`
 #this is where we check for input variables sent to the Ghost instance.
 bold=$(tput bold)
 normal=$(tput sgr0)
+RED := $(shell tput -Txterm setaf 1)
+GRN := $(shell tput -Txterm setaf 2)
+YLW := $(shell tput -Txterm setaf 3)
+RST := $(shell tput -Txterm sgr0)
+BLD := $(shell tput bold)
 echo "${bold}Ghosty version:$GHOSTY_VERSION${normal}"
 
 set -e
