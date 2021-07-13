@@ -21,12 +21,15 @@ You will not pay for any hosting fees if you don't want to, because your compute
 I have been exploring with a bunch of  install file for Ghost and haven't found any that was both quick to deploy and flexible enough for development as well as production.
 
 
-## Quick start
-### Install Git and Docker
-https://gist.github.com/derhuerst/1b15ff4652a867391f03
-https://docs.docker.com/get-docker
+##Quick start
 
-### Clone and run the script straight from GitHub by running this one line in your terminal (Install git and Docker first), you will see information scrolling real fast on the screen and then it will stop and provide you the URL you need.
+###Install Git and Docker
+For instructions on how to install Git click [here](https://gist.github.com/derhuerst/1b15ff4652a867391f03)
+
+For instructions on how to install [Docker](http://https://docs.docker.com/get-docker/)
+
+Clone and run the script straight from GitHub by running this one line in your terminal (Install git and Docker first), you will see information scrolling real fast on the screen, then it will stop and provide you the URL you need.
+
 ```bash
 git clone https://github.com/Invicti/ghosty.git; cd ghosty; ./startup.sh
 ```
