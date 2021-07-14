@@ -26,7 +26,7 @@ I have been exploring with a bunch of  install file for Ghost and haven't found 
 ### Install Git and Docker
 For instructions on how to install Git click [here](https://gist.github.com/derhuerst/1b15ff4652a867391f03)
 
-For instructions on how to install [Docker](http://https://docs.docker.com/get-docker/)
+For instructions on how to install [Docker](https://docs.docker.com/get-docker/)
 
 Clone and run the script straight from GitHub by running this one line in your terminal (Install git and Docker first), you will see information scrolling real fast on the screen, then it will stop and provide you the URL you need.
 
