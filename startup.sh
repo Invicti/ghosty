@@ -2,6 +2,21 @@
 #This script will build the docker file and run Ghostly immediately after.
 #Mysql not activated here yet so please leave the sqlite3 option untouched for now and
 #wait a few days if you need mysql support.
+
+RED=$(tput -Txterm setaf 1)
+GRN=$(tput -Txterm setaf 2)
+YLW=$(tput -Txterm setaf 3)
+RST=$(tput -Txterm sgr0)
+BLD=$(tput bold)
+
+if [[ $(which docker) && $(docker --version) ]]; then
+    echo "Docker is available. Continuing with Ghosty."
+    # command
+  else
+    echo "Docker is required. Please visit docker.io and install first (README includes more details)."
+    # command
+fi
+
 docker stop ghosty
 PUSH_REPOSITORY=docker.io/
 IMAGE=invictieu/ghosty
