@@ -42,10 +42,10 @@ Make sure your set or remove the REPLACE_WITH field with an empty string if you 
 
 ```bash
 docker pull docker.io/invictieu/ghosty
-docker run docker run \
+docker run \
 -e "NGROK=1" \
 -e "GHOST_URL_PROTO=https://" \
--e "GHOST_HOSTNAME=" \
+-e "GHOST_HOSTNAME=localhost" \
 -e "GHOST_MAIL__TRANSPORT=SMTP" \
 -e "GHOST_MAIL__OPTIONS__SERVICE=" \
 -e "GHOST_MAIL__OPTIONS__PORT=2525" \

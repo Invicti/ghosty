@@ -9,6 +9,13 @@ YLW=$(tput -Txterm setaf 3)
 RST=$(tput -Txterm sgr0)
 BLD=$(tput bold)
 
+VOLUME_CODE="ghost_data_code_$newID"
+VOLUME_PROD="ghost_data_prod_$newID"
+
+export oldID="notimplementedyet"
+export newID=$RANDOM
+echo "Naming new Ghost installation process: ghosty-$newID"
+echo "Please wait..."
 if [[ $(which docker) && $(docker --version) ]]; then
     echo "Docker is available. Continuing with Ghosty."
     # command
@@ -16,26 +23,29 @@ if [[ $(which docker) && $(docker --version) ]]; then
     echo "Docker is required. Please visit docker.io and install first (README includes more details)."
     # command
 fi
+set -x
+docker stop ghosty-$oldID
 
-docker stop ghosty
 PUSH_REPOSITORY=docker.io/
 IMAGE=invictieu/ghosty
-VERSION=0.1.7
+VERSION=0.1.8
 # add no --no-cache to build if some files need to be replaced fresh. This does not count for the files on docker volumes.
 # use this command to run inside the docker if any issue arise: \
-# docker run -ti  --entrypoint sh  --mount src=ghost_data2,target=/data,type=volume --mount src=ghost_code2,target=/opt/ghosty,type=volume invictieu/ghosty:0.1.7
+# docker run -ti  --entrypoint sh  --mount src=_data,target=/data,type=volume --mount src=ghost-$newID_code2,target=/opt/ghosty,type=volume invictieu/ghosty:0.1.7
 
 echo "version $VERSION"
-
-docker build .  -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest #add -no-cache if needed.
+# Uncomment next line to simply rebuild Ghost running image from the downloaded source.
+# docker build .  -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest #add -no-cache if needed.
 # lines below will not work if volumes were created from a previous launch and still linked to a container.
-# docker volume rm -f ghost_data
-# docker volume rm -f ghost_code
-docker rm -f ghosty
+# docker volume rm -f ghost-$newID_data
+# docker volume rm -f ghost-$newID_code
+# docker rm -f ghosty-$newID
+# add (if you have no proxy): --publish-all=true \
 docker run \
+-d \
 -e "NGROK=0" \
--e "GHOST_URL_PROTO=https://" \
--e "GHOST_HOSTNAME=ghost.fodor.net" \
+-e "GHOST_URL_PROTO=http://" \
+-e "GHOST_HOSTNAME=" \
 -e "GHOST_MAIL__TRANSPORT=SMTP" \
 -e "GHOST_MAIL__OPTIONS__SERVICE=" \
 -e "GHOST_MAIL__OPTIONS__PORT=2525" \
@@ -51,11 +61,12 @@ docker run \
 -e "GHOST_DATABASE_CONNECTION__FILENAME=/data/ghost-test.db" \
 -e "GHOST_DATABASE_CONNECTION__DATABASE=ghost" \
 -e "GHOST_DB_RESET=0" \
--ti  \
--p 2368:2368 \
--p 4040:4040 \
---mount src=ghost_data_prod,target=/data,type=volume \
---mount src=ghost_code2_prod,target=/opt/ghosty,type=volume \
---name ghosty \
+--expose 4040:4040 \
+--expose 2368:2368 \
+-P \
+-v $VOLUME_DATA:/data \
+-v $VOLUME_CODE:/opt/ghosty \
+--name ghosty_$newID \
 ${PUSH_REPOSITORY}${IMAGE}:${VERSION} \
-sh
+#sh \
+# -ti  \

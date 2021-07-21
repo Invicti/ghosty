@@ -1,16 +1,16 @@
 #!/bin/bash
-export GHOSTY_VERSION="1.0.6"
+export GHOSTY_VERSION="1.0.8"
 
-set +x #set to -x to trace this script on the console.
+set -x #set to -x to trace this script on the console.
 echo "executing in: "`pwd`
 #this is where we check for input variables sent to the Ghost instance.
 bold=$(tput bold)
 normal=$(tput sgr0)
-RED := $(shell tput -Txterm setaf 1)
-GRN := $(shell tput -Txterm setaf 2)
-YLW := $(shell tput -Txterm setaf 3)
-RST := $(shell tput -Txterm sgr0)
-BLD := $(shell tput bold)
+RED := $(tput -Txterm setaf 1)
+GRN := $(tput -Txterm setaf 2)
+YLW := $(tput -Txterm setaf 3)
+RST := $(tput -Txterm sgr0)
+BLD := $(tput bold)
 echo "${bold}Ghosty version:$GHOSTY_VERSION${normal}"
 
 set -e
@@ -23,10 +23,6 @@ then
 else
     url_proto=$GHOST_URL_PROTO
 fi 
-
-
-
-
 
     if [[ "$GHOSTY_DB__RESET" == "1" ]]
     then
@@ -64,7 +60,14 @@ echo "${normal}Host name refactored to: ${GHOST_HOSTNAME}"
 echo "${normal}Port definition refactored to: ${port_def}"
 
 ghost_env_group_log="logging_path=ghost.log logging_level=debug "
-GHOST_DEFAULT_PORT=2368
+
+GHOST_DEFAULT_PORT=${GHOST_HOST_PORT}
+if [[ "GHOST_DEFAULT_PORT" == "" ]]
+then
+    GHOST_DEFAULT_PORT=2368
+    echo "${bold}Ghost Host name is empty. Will set it to localhost."
+fi
+
 
 # "database": { 
 #     "client": "$GHOST_DATABASE_CLIENT",
@@ -155,11 +158,12 @@ printenv
             # DEBUG=ghost-config \
             # NODE_ENV=development \
             # ${ghost_env_group_database} \
+
             echo `pwd`
+
             launchcmd=" \
-            cd /opt/ghosty/Ghost; ls /opt/ghosty/Ghost/package.json;
-            url=${url_proto}${GHOST_HOSTNAME}${port_def} \
-            nohup node index > /data/ghosty.log & \
+            cd /opt/ghosty/Ghost; ls /opt/ghosty/Ghost/package.json; touch /data/ghosty.log; \
+            url=${url_proto}${GHOST_HOSTNAME}${port_def} nohup node index > /data/ghosty.log & \
             #> /dev/null &"
             eval $launchcmd
             sleep 1 
