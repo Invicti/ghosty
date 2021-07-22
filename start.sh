@@ -1,5 +1,5 @@
 #!/bin/bash
-export GHOSTY_VERSION="1.0.8"
+export GHOSTY_VERSION="1.0.9"
 
 set -x #set to -x to trace this script on the console.
 echo "executing in: "`pwd`
@@ -61,11 +61,10 @@ echo "${normal}Port definition refactored to: ${port_def}"
 
 ghost_env_group_log="logging_path=ghost.log logging_level=debug "
 
-GHOST_DEFAULT_PORT=${GHOST_HOST_PORT}
-if [[ "GHOST_DEFAULT_PORT" == "" ]]
+if [[ "${GHOST_HOST_PORT}" == "" ]]
 then
-    GHOST_DEFAULT_PORT=2368
-    echo "${bold}Ghost Host name is empty. Will set it to localhost."
+    GHOST_HOST_PORT=2368
+    echo "${bold}Ghost Host port is empty. Will set it to default Ghost port: 2368."
 fi
 
 
@@ -117,7 +116,7 @@ cat >/opt/ghosty/Ghost/core/shared/config/env/config.development.json<<EOF
 },
   "server" : {
     "host" : "0.0.0.0",
-    "port" : $GHOST_DEFAULT_PORT
+    "port" : $GHOST_HOST_PORT
   }
 }
 EOF
@@ -143,7 +142,7 @@ printenv
             which ngrok
             ngrok http 2368 -config=/opt/ghosty/ngrok.conf > /data/ngrok.log &
             #set -e 
-            sleep 1
+            sleep 5
             NGROK_HOSTNAME=$(curl --silent --show-error http://0.0.0.0:4040/api/tunnels | sed -nE 's/.*public_url":"https:..([^"]*).*/\1/p')
             echo "${bold}Ghosty is now starting Ghost on https://$NGROK_HOSTNAME"
             port_def=""

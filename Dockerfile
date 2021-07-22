@@ -76,16 +76,16 @@ RUN mkdir /opt/ghosty
 WORKDIR /opt/ghosty
 RUN git clone --recurse-submodules https://github.com/Invicti/Ghost.git
 WORKDIR "/opt/ghosty/Ghost"
-RUN git remote rename origin upstream
-RUN git remote add origin https://github.com/Invicti/Ghost.git
-RUN git checkout main 
-RUN git pull upstream main
-WORKDIR "/opt/ghosty/Ghost/core/client"
-RUN git remote rename origin upstream
-RUN git remote add origin github.com/Invicti/Admin.git
-RUN git checkout main
-RUN git pull upstream main
-WORKDIR "/opt/ghosty/Ghost"
+#RUN git remote rename origin upstream
+#RUN git remote add origin https://github.com/Invicti/Ghost.git
+#RUN git checkout main
+#RUN git pull upstream main
+#WORKDIR "/opt/ghosty/Ghost/core/client"
+#RUN git remote rename origin upstream
+#RUN git remote add origin github.com/Invicti/Admin.git
+#RUN git checkout main
+#RUN git pull upstream main
+#WORKDIR "/opt/ghosty/Ghost"
 RUN yarn setup
 WORKDIR "/opt/ghosty"
 COPY ngrok.conf "/opt/ghosty/ngrok.conf"
