@@ -43,8 +43,8 @@ echo "version $VERSION"
 docker run \
 -d \
 -e "NGROK=1" \
--e "GHOST_URL_PROTO=http://localhost" \
--e "GHOST_HOSTNAME=" \
+-e "GHOST_URL_PROTO=http://" \
+-e "GHOST_HOSTNAME=http://localhost" \
 -e "GHOST_MAIL__TRANSPORT=SMTP" \
 -e "GHOST_MAIL__OPTIONS__SERVICE=" \
 -e "GHOST_MAIL__OPTIONS__PORT=2525" \
