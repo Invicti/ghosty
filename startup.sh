@@ -34,7 +34,7 @@ VERSION=0.1.9
 
 echo "version $VERSION"
 # Uncomment next line to simply rebuild Ghost running image from the downloaded source.
-docker build .  -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest #add -no-cache if needed.
+# docker build .  -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest #add -no-cache if needed.
 # lines below will not work if volumes were created from a previous launch and still linked to a container.
 # docker volume rm -f ghost-$newID_data
 # docker volume rm -f ghost-$newID_code
