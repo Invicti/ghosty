@@ -1,7 +1,7 @@
 #!/bin/bash
 export GHOSTY_VERSION="1.0.9"
 
-set -x #set to -x to trace this script on the console.
+set +x #set to -x to trace this script on the console.
 echo "executing in: "`pwd`
 #this is where we check for input variables sent to the Ghost instance.
 bold=$(tput bold)
@@ -173,12 +173,13 @@ printenv
 
        else
             echo "${normal}Ghosty's mission complete, Ghost is listening on \
-             ${bold}${url_proto}${GHOST_HOSTNAME}${port_def}${normal} . \
-             ${normal}Please make sure this host name is associated with an accessible IP before you try this URL out.
-             Control C to exit."
+             ${bold}${url_proto}${GHOST_HOSTNAME}${port_def}${normal} ."
        fi
     
 
     trap 'trap - INT; kill "$!"; exit' INT
     #exec tail -f /dev/null & wait $!
-    exec tail -f /data/ghosty.log #& wait $!
+    echo "${normal}Ghosty's mission complete, Ghost is listening on \
+    ${bold}${url_proto}${GHOST_HOSTNAME}${port_def}${normal} ."
+    exec tail  -f /data/ghosty.log  & wait $!
+     #& wait $!
