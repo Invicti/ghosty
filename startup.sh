@@ -2,7 +2,7 @@
 #This script will build the docker file and run Ghostly immediately after.
 #Mysql not activated here yet so please leave the sqlite3 option untouched for now and
 #wait a few days if you need mysql support.
-
+export GHOSTY_VERSION=0.2.1
 RED=$(tput -Txterm setaf 1)
 GRN=$(tput -Txterm setaf 2)
 YLW=$(tput -Txterm setaf 3)
@@ -27,7 +27,7 @@ docker stop ghosty-$oldID
 
 PUSH_REPOSITORY=docker.io/
 IMAGE=invictieu/ghosty
-VERSION=0.1.9
+VERSION=$GHOSTY_VERSION
 # add no --no-cache to build if some files need to be replaced fresh. This does not count for the files on docker volumes.
 # use this command to run inside the docker if any issue arise: \
 # docker run -ti  --entrypoint sh  --mount src=_data,target=/data,type=volume --mount src=ghost-$newID_code2,target=/opt/ghosty,type=volume invictieu/ghosty:0.1.7
@@ -61,6 +61,9 @@ docker run \
 -e "GHOST_DATABASE_CONNECTION__DATABASE=ghost" \
 -e "GHOST_DB_RESET=0" \
 -e "GHOST_DEFAULT_PORT=2368" \
+-e "mailtrain_url=" \
+-e "mailtrain_configuration_id_as_int=1" \
+-e "mailtrain_host=" \
 --expose "4040" \
 --expose "2368" \
 -P \

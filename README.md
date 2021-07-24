@@ -9,7 +9,8 @@ Or try Ghosty to run Ghost for free on your own computer with a home internet co
 
 Ghosty is "Instant deployment for free expression" in the comfort of your own or office. 
 
-Ghostly will produce a sharable web URL for people to read your blog or even own their own blog. 
+Ghostly will produce a sharable web URL for people to read your blog or even own their own blog.
+You can use your own domain name if you already have one.
 
 You will not pay for any hosting fees if you don't want to, because your computer is the host. 
 
@@ -31,8 +32,19 @@ For instructions on how to install [Docker](https://docs.docker.com/get-docker/)
 Clone and run the script straight from GitHub by running this one line in your terminal (Install git and Docker first), you will see information scrolling real fast on the screen, then it will stop and provide you the URL you need.
 
 ```bash
-git clone https://github.com/Invicti/ghosty.git; cd ghosty; ./startup.sh
+git clone https://github.com/Invicti/ghosty.git 
+cd ghosty
 ```
+Then you can run Ghosty immediately with the default settings that you can change to your liking later.
+Simply type:
+```bash
+./startup.sh
+```
+Or if you want to edit your settings before running your Ghost site, edit the startup.sh file and change the values that match your setup before you run the line above.
+```bash
+nano ./startup.sh
+```
+
 ### Pull and run the container
 Run the docker container:
 <a href="https://asciinema.org/a/l38Z6W4diHGNfGqpCKrPKT4av" target="_blank"><img src="https://asciinema.org/a/l38Z6W4diHGNfGqpCKrPKT4av.svg" /></a>
@@ -61,6 +73,9 @@ docker run \
 -e "GHOST_DATABASE_CONNECTION__FILENAME=/data/ghost-test.db" \
 -e "GHOST_DATABASE_CONNECTION__DATABASE=ghost" \
 -e "GHOST_DB_RESET=0" \
+-e "mailtrain_url=" \
+-e "mailtrain_configuration_id_as_int=1" \
+-e "mailtrain_host=" \
 -ti  \
 -p 2368:2368 \
 -p 4040:4040 \
