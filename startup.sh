@@ -2,7 +2,7 @@
 #This script will build the docker file and run Ghostly immediately after.
 #Mysql not activated here yet so please leave the sqlite3 option untouched for now and
 #wait a few days if you need mysql support.
-export GHOSTY_VERSION=0.2.1
+export GHOSTY_VERSION=0.2.2
 RED=$(tput -Txterm setaf 1)
 GRN=$(tput -Txterm setaf 2)
 YLW=$(tput -Txterm setaf 3)
@@ -34,7 +34,7 @@ VERSION=$GHOSTY_VERSION
 
 echo "version $VERSION"
 # Uncomment next line to simply rebuild Ghost running image from the downloaded source.
-# docker build .  -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest #add -no-cache if needed.
+# docker build .  -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest #add --no-cache if needed.
 # lines below will not work if volumes were created from a previous launch and still linked to a container.
 # docker volume rm -f ghost-$newID_data
 # docker volume rm -f ghost-$newID_code

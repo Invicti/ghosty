@@ -1,5 +1,5 @@
 #!/bin/bash
-export GHOSTY_VERSION="0.2.0"
+export GHOSTY_VERSION="0.2.2"
 
 set +x #set to -x to trace this script on the console.
 echo "executing in: "`pwd`
